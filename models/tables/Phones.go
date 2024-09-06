@@ -2,16 +2,15 @@ package tables
 
 import "time"
 
-type EmployeeRole struct {
-	Id               int32      `gorm:"primaryKey;type:int;autoincrement;column:Id"`
-	Description      string     `gorm:"type:varchar(50);not null;column:Description"`
-	Note             *string    `gorm:"type:varchar(200);null;column:Note"`
+type Phone struct {
+	Id               string     `gorm:"primaryKey;type:varchar(36);column:Id"`
+	PhoneNumber      string     `gorm:"type:varchar(20);not null;column:PhoneNumber"`
 	CreationDate     time.Time  `gorm:"type:datetime;not null;column:CreationDate"`
 	CreationEmployee string     `gorm:"type:char(36);not null;column:CreationEmployee"`
 	ModDate          *time.Time `gorm:"type:datetime;null;column:ModDate"`
 	ModEmployee      *string    `gorm:"type:char(36);null;column:ModEmployee"`
 }
 
-func (EmployeeRole) TableName() string {
-	return "EmployeesRoles"
+func (Phone) TableName() string {
+	return "Phones"
 }
