@@ -2,6 +2,7 @@ package tables
 
 import "time"
 
+// Table of the database
 type EmployeeRole struct {
 	Id               int32      `gorm:"primaryKey;type:int;autoincrement;column:Id"`
 	Description      string     `gorm:"type:varchar(50);not null;column:Description"`

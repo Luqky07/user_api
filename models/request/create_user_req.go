@@ -2,6 +2,7 @@ package request
 
 import "time"
 
+// Struct to manage the users creation
 type CreateUserRequest struct {
 	Name       string    `json:"name" binding:"required"`
 	LastName   string    `json:"lastname" binding:"required"`

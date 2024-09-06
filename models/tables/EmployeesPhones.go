@@ -2,6 +2,7 @@ package tables
 
 import "time"
 
+// Table of the database
 type EmployeePhone struct {
 	EmployeeId       string     `gorm:"primaryKey;type:varchar(36);column:EmployeeId"`
 	PhoneId          string     `gorm:"primaryKey;type:varchar(36);column:PhoneId"`

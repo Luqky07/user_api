@@ -5,8 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Setup the api routes
 func SetupRoutes(router *gin.Engine) {
-	router.GET("/", controllers.Hello)
-
-	router.POST("/users", controllers.CreateNewUser)
+	//Client creation
+	router.POST("/users", controllers.CreateNewClient)
 }

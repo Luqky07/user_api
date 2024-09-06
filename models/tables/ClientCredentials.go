@@ -2,6 +2,7 @@ package tables
 
 import "time"
 
+// Table of the database
 type ClientCredential struct {
 	ClientId         string     `gorm:"primaryKey;type:varchar(36);column:ClientId"`
 	IsBlock          bool       `gorm:"type:bit;not null;column:IsBlock"`

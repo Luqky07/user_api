@@ -2,6 +2,7 @@ package tables
 
 import "time"
 
+// Table of the database
 type ClientEmailVerification struct {
 	ClientId         string     `gorm:"primaryKey;type:varchar(36);column:ClientId"`
 	IsVerified       bool       `gorm:"type:bit;not null;column:IsVerified"`

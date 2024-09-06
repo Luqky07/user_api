@@ -6,6 +6,7 @@ import (
 	"github.com/Luqky07/user_api/models/request"
 )
 
+// Struct to manage the response of the users creation
 type CreateUserResponse struct {
 	Guid       string    `json:"guid"`
 	Name       string    `json:"name"`

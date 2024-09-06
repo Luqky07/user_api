@@ -10,21 +10,17 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-func Hello(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Hello world!",
-	})
-}
-
-func CreateNewUser(c *gin.Context) {
+// Function to create a new client
+func CreateNewClient(c *gin.Context) {
 	var req request.CreateUserRequest
 
+	//Validate CreateUserRequest model
 	if err := c.ShouldBindJSON(&req); err != nil {
-		// Verificamos si es un error de validación
+		//Validating data
 		if validationErrs, ok := err.(validator.ValidationErrors); ok {
 			var errorMessages []string
 			for _, fieldError := range validationErrs {
-				// Personalizar mensajes por tag
+				//Custom validating error
 				switch fieldError.Tag() {
 				case "required":
 					errorMessages = append(errorMessages, fmt.Sprintf("El campo %s es obligatorio.", fieldError.Field()))
@@ -38,12 +34,12 @@ func CreateNewUser(c *gin.Context) {
 					errorMessages = append(errorMessages, fmt.Sprintf("El campo %s tiene un error de validación.", fieldError.Field()))
 				}
 			}
-			// Devolver mensajes de error personalizados
+			//Return validating error message
 			c.JSON(http.StatusBadRequest, gin.H{"errors": errorMessages})
 			return
 		}
 
-		// Si es otro tipo de error, lo devolvemos tal cual
+		//Return other type error
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
