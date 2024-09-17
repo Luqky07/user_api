@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/Luqky07/user_api/models/request"
-	"github.com/Luqky07/user_api/models/response"
+	"github.com/Luqky07/user_api/services"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 )
@@ -44,7 +44,13 @@ func CreateNewClient(c *gin.Context) {
 		return
 	}
 
-	res := response.NewCreateUserResponse(req)
+	res, apiErr := services.CreateNewClient(req)
+
+	if apiErr.StatusCode != 200 {
+		c.JSON(apiErr.StatusCode, apiErr)
+
+		return
+	}
 
 	c.JSON(http.StatusCreated, res)
 }

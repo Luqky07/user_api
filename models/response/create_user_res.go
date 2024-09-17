@@ -3,28 +3,28 @@ package response
 import (
 	"time"
 
-	"github.com/Luqky07/user_api/models/request"
+	"github.com/Luqky07/user_api/models/tables"
 )
 
 // Struct to manage the response of the users creation
 type CreateUserResponse struct {
-	Guid       string    `json:"guid"`
+	UserId     string    `json:"userId"`
 	Name       string    `json:"name"`
 	LastName   string    `json:"lastname"`
 	Birthdate  time.Time `json:"birthdate"`
 	Email      string    `json:"email"`
 	DocumentId string    `json:"documentid"`
-	Phone      string    `json:"phone"`
+	PhoneId    string    `json:"phoneId"`
 }
 
-func NewCreateUserResponse(req request.CreateUserRequest) CreateUserResponse {
+func NewCreateUserResponse(client tables.Client, phone tables.ClientPhone) CreateUserResponse {
 	return CreateUserResponse{
-		"1234567890",
-		req.Name,
-		req.LastName,
-		req.Birthdate,
-		req.Email,
-		req.DocumentId,
-		req.Phone,
+		UserId:     client.Id,
+		Name:       client.Name,
+		LastName:   client.LastName,
+		Birthdate:  client.Birthdate,
+		Email:      client.Email,
+		DocumentId: client.DocumentId,
+		PhoneId:    phone.PhoneId,
 	}
 }

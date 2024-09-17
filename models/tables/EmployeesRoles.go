@@ -1,6 +1,10 @@
 package tables
 
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 // Table of the database
 type EmployeeRole struct {
@@ -13,6 +17,14 @@ type EmployeeRole struct {
 	ModEmployee      *string    `gorm:"type:char(36);null;column:ModEmployee"`
 }
 
+type EmployeeRoles []EmployeeRole
+
 func (EmployeeRole) TableName() string {
 	return "EmployeesRoles"
+}
+
+func (e *EmployeeRole) BeforeCreate(tx *gorm.DB) (err error) {
+	e.CreationDate = time.Now()
+
+	return
 }
